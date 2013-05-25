@@ -1,0 +1,117 @@
+<body>
+
+<canvas id = "tela" width="900" height="600">
+Seu navegador não suporta HTML5
+</canvas>
+
+<script>
+var tela = document.getElementById('tela');
+var d = tela.getContext('2d');
+var x=0;
+var y=0;
+var x1=100;
+var y1=100;
+var direcao=0;
+var direcao1=0;
+var pers_princ = new Image();
+pers_princ.src = "personagem.png";
+
+function desenha()
+{
+		d.drawImage(pers_princ,x,y,100,200);
+		d.drawImage(pers_princ,x1,y1,100,200);
+}
+
+
+function tecla(event){
+	
+	//37 esquerda
+	if(event.keyCode == 37)
+	{
+	direcao=37;
+	}	
+	//38 cima
+	if(event.keyCode == 38)
+	{
+	direcao=38;
+	}
+	//39 direita
+	if(event.keyCode == 39)
+	{
+	direcao=39;
+	}
+    if(event.keyCode == 40)
+	{
+	//40 baixo
+	direcao=40;
+	}	
+
+	}
+
+function tecla2(event){
+	if(event.keyCode == 65) //65 = a (cima)
+	{
+	direcao1=65;
+	}	
+	if(event.keyCode == 68) //68 = d (direita)
+	{
+	direcao1=68;
+	}
+	if(event.keyCode == 83) //83 = s (baixo)
+	{
+	direcao1=83;
+	}
+    if(event.keyCode == 87) // 87= w (cima)
+	{
+	direcao1=87;
+	}
+	
+}	
+	
+	
+
+function movimenta (direcao1){
+
+	d.clearRect(x1,y1,100,200);
+	
+	switch (direcao1){
+	
+	case 65:x1=x1-100;
+		break;
+	case 87:y1=y1-100;
+		break;
+	case 68:x1=x1+100;
+		break;
+	case 83:y1=y1+100;
+		break;
+	}
+	
+	desenha();
+}
+window.onkeydown=tecla2;
+window.setInterval("movimenta(direcao1)",200);
+
+function movimenta (direcao){
+
+	d.clearRect(x,y,100,200);
+	
+	switch (direcao){
+	
+	case 37:x=x-100;
+		break;
+	case 38:y=y-100;
+		break;
+	case 39:x=x+100;
+		break;
+	case 40:y=y+100;
+		break;
+	}
+	
+	desenha();
+}
+
+window.onkeydown=tecla;
+window.setInterval("movimenta(direcao)",200 );
+
+</script>
+<body>
